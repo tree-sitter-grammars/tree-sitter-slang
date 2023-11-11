@@ -1,4 +1,10 @@
+const C = require('tree-sitter-c/grammar');
 const HLSL = require("tree-sitter-hlsl/grammar")
+
+const PREC = Object.assign(C.PREC, {
+    IS: C.PREC.RELATIONAL + 1,
+    AS: C.PREC.RELATIONAL + 1,
+});
 
 module.exports = grammar(HLSL, {
     name: 'slang',
@@ -53,6 +59,24 @@ module.exports = grammar(HLSL, {
             alias(token(prec(1, '>')), '>'),
         ),
         interface_requirements: $ => prec.left(seq(":", commaSep1($.identifier))),
+
+        binary_expression: ($, original) => {
+            const table = [
+                ['is', PREC.IS],
+                ['as', PREC.AS],
+            ];
+
+            return choice(
+                ...original.members,
+                ...table.map(([operator, precedence]) => {
+                    return prec.left(precedence, seq(
+                        field('left', $._expression),
+                        // @ts-ignore
+                        field('operator', operator),
+                        field('right', $._expression),
+                    ));
+                }));
+        },
 
     }
 });
