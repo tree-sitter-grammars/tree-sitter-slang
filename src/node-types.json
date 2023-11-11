@@ -2091,6 +2091,10 @@
           {
             "type": "semantics",
             "named": true
+          },
+          {
+            "type": "type_hinted_declarator",
+            "named": true
           }
         ]
       },
@@ -2273,10 +2277,6 @@
       "types": [
         {
           "type": "_expression",
-          "named": true
-        },
-        {
-          "type": "auto",
           "named": true
         }
       ]
@@ -3722,6 +3722,10 @@
           {
             "type": "_declarator",
             "named": true
+          },
+          {
+            "type": "type_hinted_declarator",
+            "named": true
           }
         ]
       },
@@ -3731,10 +3735,6 @@
         "types": [
           {
             "type": "_expression",
-            "named": true
-          },
-          {
-            "type": "argument_list",
             "named": true
           },
           {
@@ -4599,20 +4599,6 @@
           }
         ]
       }
-    },
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "auto",
-          "named": true
-        },
-        {
-          "type": "decltype",
-          "named": true
-        }
-      ]
     }
   },
   {
@@ -6701,6 +6687,40 @@
     }
   },
   {
+    "type": "type_hint",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "_type_declarator",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "type_hinted_declarator",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "type_hint",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "type_parameter_declaration",
     "named": true,
     "fields": {},
@@ -7665,6 +7685,10 @@
     "named": false
   },
   {
+    "type": "let",
+    "named": false
+  },
+  {
     "type": "line",
     "named": false
   },
@@ -7966,6 +7990,10 @@
   },
   {
     "type": "using",
+    "named": false
+  },
+  {
+    "type": "var",
     "named": false
   },
   {

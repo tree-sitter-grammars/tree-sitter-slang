@@ -82,10 +82,10 @@ uniform float4 position : SV_POSITION;
   (declaration
     (qualifiers)
     (type_identifier)
-    (identifier)
-    (semantics)
-    (semantics
-      (identifier))))
+    (type_hinted_declarator
+      (identifier)
+      (type_hint
+        (type_identifier)))))
 
 ================================================================================
 register semantics
@@ -96,13 +96,14 @@ SamplerState smp : register(s0);
 (translation_unit
   (declaration
     (type_identifier)
-    (identifier)
-    (semantics)
-    (semantics
-      (call_expression
-        (identifier)
-        (argument_list
-          (identifier))))))
+    (type_hinted_declarator
+      (identifier)
+      (type_hint
+        (function_declarator
+          (type_identifier)
+          (parameter_list
+            (parameter_declaration
+              (type_identifier))))))))
 
 ================================================================================
 discard
@@ -157,22 +158,24 @@ cbuffer MyBuffer
     (compound_statement
       (declaration
         (type_identifier)
-        (identifier)
-        (semantics)
-        (semantics
-          (call_expression
-            (identifier)
-            (argument_list
-              (identifier)))))
+        (type_hinted_declarator
+          (identifier)
+          (type_hint
+            (function_declarator
+              (type_identifier)
+              (parameter_list
+                (parameter_declaration
+                  (type_identifier)))))))
       (declaration
         (type_identifier)
-        (identifier)
-        (semantics)
-        (semantics
-          (call_expression
-            (identifier)
-            (argument_list
-              (identifier)))))
+        (type_hinted_declarator
+          (identifier)
+          (type_hint
+            (function_declarator
+              (type_identifier)
+              (parameter_list
+                (parameter_declaration
+                  (type_identifier)))))))
       (declaration
         (type_identifier)
         (identifier)
