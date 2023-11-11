@@ -171,3 +171,79 @@ int myGenericMethod<T: IFoo>(T arg)
             (field_identifier))
           (argument_list
             (number_literal)))))))
+
+================================================================================
+Is/as operator
+================================================================================
+void main() {
+  bool t = foo is MyImpl; // true
+  Optional<MyImpl> optV = foo as MyImpl;
+}
+--------------------------------------------------------------------------------
+
+(translation_unit
+  (function_definition
+    (primitive_type)
+    (function_declarator
+      (identifier)
+      (parameter_list))
+    (compound_statement
+      (declaration
+        (primitive_type)
+        (init_declarator
+          (identifier)
+          (binary_expression
+            (identifier)
+            (identifier))))
+      (comment)
+      (declaration
+        (template_type
+          (type_identifier)
+          (template_argument_list
+            (type_descriptor
+              (type_identifier))))
+        (init_declarator
+          (identifier)
+          (binary_expression
+            (identifier)
+            (identifier)))))))
+
+================================================================================
+Extensions
+================================================================================
+extension MyObject : IBar, IBar2
+{
+    float bar() { return 1.0f }
+    float bar2() { return 2.0f }
+};
+--------------------------------------------------------------------------------
+
+(translation_unit
+  (declaration
+    (type_identifier)
+    (type_hinted_declarator
+      (identifier)
+      (type_hint
+        (type_identifier)))
+    (identifier)
+    (MISSING ";"))
+  (compound_statement
+    (function_definition
+      (primitive_type)
+      (function_declarator
+        (identifier)
+        (parameter_list))
+      (compound_statement
+        (return_statement
+          (number_literal)
+          (MISSING ";"))))
+    (function_definition
+      (primitive_type)
+      (function_declarator
+        (identifier)
+        (parameter_list))
+      (compound_statement
+        (ERROR
+          (number_literal))))
+    (expression_statement)
+    (MISSING "}")))

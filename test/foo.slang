@@ -1,5 +1,5 @@
 
-main() {
+void main() {
   int a;
   var a = 1; // OK, `a` is an `int`.
   var b = float3(0, 1, 2); // OK, `b` is a `float3`.
@@ -14,9 +14,14 @@ interface IFoo
     int myMethod(float arg);
 };
 
+extension IFoo
+{
+    int bar() { return 0; }
+}
 
 int myGenericMethod<T: IFoo>(T arg)
 {
+      bool t = foo is MyImpl; // true
+      Optional<MyImpl> optV = foo as MyImpl;
     return arg.myMethod(1.0);
 }
-

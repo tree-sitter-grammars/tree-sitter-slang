@@ -32,6 +32,7 @@ module.exports = grammar(HLSL, {
             $._declaration_specifiers,
             commaSep1(field('declarator', choice(
                 // type hint has ambiguity with semantics in struct declarations
+                // type hint has ambiguity with interited classes
                 seq(choice($._declarator, $.type_hinted_declarator), optional(alias(seq(':', $._expression), $.semantics))),
                 $.init_declarator
             ))),
@@ -43,6 +44,11 @@ module.exports = grammar(HLSL, {
 
         interface_specifier: $ => seq(
             'interface',
+            $._class_declaration,
+        ),
+
+        extension_specifier: $ => seq(
+            'extension',
             $._class_declaration,
         ),
 

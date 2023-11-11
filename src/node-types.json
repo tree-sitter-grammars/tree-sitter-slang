@@ -1142,11 +1142,19 @@
             "named": false
           },
           {
+            "type": "as",
+            "named": false
+          },
+          {
             "type": "bitand",
             "named": false
           },
           {
             "type": "bitor",
+            "named": false
+          },
+          {
+            "type": "is",
             "named": false
           },
           {
@@ -7584,6 +7592,10 @@
     "named": false
   },
   {
+    "type": "as",
+    "named": false
+  },
+  {
     "type": "asm",
     "named": false
   },
@@ -7716,6 +7728,10 @@
     "named": false
   },
   {
+    "type": "extension",
+    "named": false
+  },
+  {
     "type": "extern",
     "named": false
   },
@@ -7773,6 +7789,10 @@
   },
   {
     "type": "interface",
+    "named": false
+  },
+  {
+    "type": "is",
     "named": false
   },
   {
