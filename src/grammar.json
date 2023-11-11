@@ -3988,6 +3988,10 @@
         {
           "type": "SYMBOL",
           "name": "interface_specifier"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "extension_specifier"
         }
       ]
     },

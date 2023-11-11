@@ -17,7 +17,7 @@ interface IFoo
 extension IFoo
 {
     int bar() { return 0; }
-}
+};
 
 int myGenericMethod<T: IFoo>(T arg)
 {
