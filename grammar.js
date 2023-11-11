@@ -52,7 +52,7 @@ module.exports = grammar(HLSL, {
             $._class_declaration,
         ),
 
-        _type_specifier: ($, original) => choice(original, $.interface_specifier),
+        _type_specifier: ($, original) => choice(original, $.interface_specifier, $.extension_specifier),
 
         template_argument_list: $ => seq(
             '<',
