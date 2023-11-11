@@ -112,3 +112,62 @@ main() {
               (primitive_type)))
           (number_literal)))
       (comment))))
+
+================================================================================
+Interfaces
+================================================================================
+
+interface IFoo
+{
+    int myMethod(float arg);
+};
+
+--------------------------------------------------------------------------------
+
+(translation_unit
+  (interface_specifier
+    (type_identifier)
+    (field_declaration_list
+      (field_declaration
+        (primitive_type)
+        (function_declarator
+          (field_identifier)
+          (parameter_list
+            (parameter_declaration
+              (primitive_type)
+              (identifier))))))))
+
+================================================================================
+Generics
+================================================================================
+
+int myGenericMethod<T: IFoo>(T arg)
+{
+    return arg.myMethod(1.0);
+}
+
+--------------------------------------------------------------------------------
+
+(translation_unit
+  (function_definition
+    (primitive_type)
+    (function_declarator
+      (template_function
+        (identifier)
+        (template_argument_list
+          (type_descriptor
+            (type_identifier))
+          (interface_requirements
+            (identifier))))
+      (parameter_list
+        (parameter_declaration
+          (type_identifier)
+          (identifier))))
+    (compound_statement
+      (return_statement
+        (call_expression
+          (field_expression
+            (identifier)
+            (field_identifier))
+          (argument_list
+            (number_literal)))))))

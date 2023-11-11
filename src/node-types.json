@@ -424,6 +424,10 @@
         "named": true
       },
       {
+        "type": "interface_specifier",
+        "named": true
+      },
+      {
         "type": "placeholder_type_specifier",
         "named": true
       },
@@ -3830,6 +3834,85 @@
     }
   },
   {
+    "type": "interface_requirements",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "interface_specifier",
+    "named": true,
+    "fields": {
+      "body": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "field_declaration_list",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "qualified_identifier",
+            "named": true
+          },
+          {
+            "type": "template_type",
+            "named": true
+          },
+          {
+            "type": "type_identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "alignas_specifier",
+          "named": true
+        },
+        {
+          "type": "attribute_declaration",
+          "named": true
+        },
+        {
+          "type": "attribute_specifier",
+          "named": true
+        },
+        {
+          "type": "base_class_clause",
+          "named": true
+        },
+        {
+          "type": "ms_declspec_modifier",
+          "named": true
+        },
+        {
+          "type": "virtual_specifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "labeled_statement",
     "named": true,
     "fields": {
@@ -6093,6 +6176,10 @@
           "named": true
         },
         {
+          "type": "interface_requirements",
+          "named": true
+        },
+        {
           "type": "type_descriptor",
           "named": true
         }
@@ -7682,6 +7769,10 @@
   },
   {
     "type": "inout",
+    "named": false
+  },
+  {
+    "type": "interface",
     "named": false
   },
   {

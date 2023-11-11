@@ -22,35 +22,44 @@ module.exports = grammar(HLSL, {
             field('value', choice($.initializer_list, $._expression)),
         ),
 
-        //_declaration_declarator: $ => commaSep1(field('declarator', choice(
-        //seq($._declarator, optional($.gnu_asm_expression)),
-        //$.init_declarator,
-        //))),
-
         declaration: $ => seq(
             $._declaration_specifiers,
             commaSep1(field('declarator', choice(
+                // type hint has ambiguity with semantics in struct declarations
                 seq(choice($._declarator, $.type_hinted_declarator), optional(alias(seq(':', $._expression), $.semantics))),
                 $.init_declarator
             ))),
             ';'
         ),
 
-        //declaration: $ => seq(
-        //$._declaration_specifiers,
-        //$._declaration_declarator,
-        //';'),
-
-        //_declarator: ($, original) => choice(
-        //$.type_hinted_declarator,
-        //original,
-        ////$.structured_binding_declarator,
-        //),
-
         type_hinted_declarator: $ => seq($.identifier, $.type_hint),
-        type_hint: $ => seq(":", $._type_declarator)
+        type_hint: $ => seq(":", $._type_declarator),
+
+        interface_specifier: $ => seq(
+            'interface',
+            $._class_declaration,
+        ),
+
+        _type_specifier: ($, original) => choice(original, $.interface_specifier),
+
+        template_argument_list: $ => seq(
+            '<',
+            commaSep(choice(
+                prec.dynamic(4, seq($.type_descriptor, $.interface_requirements)),
+                prec.dynamic(3, $.type_descriptor),
+                prec.dynamic(2, alias($.type_parameter_pack_expansion, $.parameter_pack_expansion)),
+                prec.dynamic(1, $._expression),
+            )),
+            alias(token(prec(1, '>')), '>'),
+        ),
+        interface_requirements: $ => prec.left(seq(":", commaSep1($.identifier))),
+
     }
 });
+
+function commaSep(rule) {
+    return optional(commaSep1(rule));
+}
 
 function commaSep1(rule) {
     return seq(rule, repeat(seq(',', rule)))
