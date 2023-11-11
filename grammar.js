@@ -84,6 +84,7 @@ module.exports = grammar(HLSL, {
                 }));
         },
 
+        // TODO: fix type_hinted_declarator, add __init, add properties, add This
     }
 });
 
