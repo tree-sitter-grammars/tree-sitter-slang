@@ -25,3 +25,9 @@ int myGenericMethod<T: IFoo>(T arg)
       Optional<MyImpl> optV = foo as MyImpl;
     return arg.myMethod(1.0);
 }
+
+extension MyObject : IBar, IBar2
+{
+    float bar() { return 1.0f; }
+    float bar2() { return 2.0f; }
+};;
