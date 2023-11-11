@@ -19,7 +19,7 @@ module.exports = grammar(HLSL, {
 
         placeholder_type_specifier: $ => prec(1, seq(
             field('constraint', optional($._type_specifier)),
-            choice("var", "let"),
+            choice("var", "let", "This"),
         )),
 
         init_declarator: $ => seq(

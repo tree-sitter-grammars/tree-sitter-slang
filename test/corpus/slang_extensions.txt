@@ -241,3 +241,25 @@ extension MyObject : IBar, IBar2
         (compound_statement
           (return_statement
             (number_literal)))))))
+
+================================================================================
+This
+================================================================================
+interface IComparable
+{
+    int comparesTo(This other);
+};
+--------------------------------------------------------------------------------
+
+(translation_unit
+  (interface_specifier
+    (type_identifier)
+    (field_declaration_list
+      (field_declaration
+        (primitive_type)
+        (function_declarator
+          (field_identifier)
+          (parameter_list
+            (parameter_declaration
+              (placeholder_type_specifier)
+              (identifier))))))))
