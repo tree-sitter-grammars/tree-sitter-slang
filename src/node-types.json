@@ -3792,6 +3792,21 @@
     }
   },
   {
+    "type": "import_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "init_declarator",
     "named": true,
     "fields": {
@@ -6661,6 +6676,10 @@
           "named": true
         },
         {
+          "type": "import_statement",
+          "named": true
+        },
+        {
           "type": "labeled_statement",
           "named": true
         },
@@ -7596,6 +7615,10 @@
     "named": false
   },
   {
+    "type": "__exported",
+    "named": false
+  },
+  {
     "type": "__extension__",
     "named": false
   },
@@ -7845,6 +7868,10 @@
   },
   {
     "type": "if",
+    "named": false
+  },
+  {
+    "type": "import",
     "named": false
   },
   {

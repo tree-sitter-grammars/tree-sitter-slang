@@ -16,6 +16,7 @@ module.exports = grammar(HLSL, {
 
     rules: {
         _top_level_item: (_, original) => original,
+        _top_level_statement: ($, original) => choice(original, $.import_statement),
 
         placeholder_type_specifier: $ => prec(1, seq(
             field('constraint', optional($._type_specifier)),
@@ -83,6 +84,8 @@ module.exports = grammar(HLSL, {
                 }));
         },
 
+        import_statement: $ => seq(optional("__exported"), "import", dotSep1($.identifier), ";"),
+
         // TODO: fix type_hinted_declarator, add __init, add properties, add This
     }
 });
@@ -93,4 +96,8 @@ function commaSep(rule) {
 
 function commaSep1(rule) {
     return seq(rule, repeat(seq(',', rule)))
+}
+
+function dotSep1(rule) {
+    return seq(rule, repeat(seq('.', rule)))
 }

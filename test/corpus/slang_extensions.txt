@@ -263,3 +263,22 @@ interface IComparable
             (parameter_declaration
               (placeholder_type_specifier)
               (identifier))))))))
+
+================================================================================
+Import
+================================================================================
+
+__exported import a.b;
+__exported import a;
+import ab;
+
+--------------------------------------------------------------------------------
+
+(translation_unit
+  (import_statement
+    (identifier)
+    (identifier))
+  (import_statement
+    (identifier))
+  (import_statement
+    (identifier)))
