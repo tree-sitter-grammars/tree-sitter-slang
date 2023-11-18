@@ -357,6 +357,11 @@ struct MyType
         get { return flag >> 16; }
         set { flag = (flag & 0xFF) + (newValue << 16); }
     }
+    property int oldSyntax
+    {
+        get { return flag >> 16; }
+        set { flag = (flag & 0xFF) + (newValue << 16); }
+    }
 };
 --------------------------------------------------------------------------------
 
@@ -368,6 +373,33 @@ struct MyType
         (identifier)
         (type_descriptor
           (type_identifier))
+        (compound_statement)
+        (compound_statement
+          (property_get
+            (compound_statement
+              (return_statement
+                (binary_expression
+                  (identifier)
+                  (number_literal)))))
+          (property_set
+            (compound_statement
+              (expression_statement
+                (assignment_expression
+                  (identifier)
+                  (binary_expression
+                    (parenthesized_expression
+                      (binary_expression
+                        (identifier)
+                        (number_literal)))
+                    (parenthesized_expression
+                      (binary_expression
+                        (identifier)
+                        (number_literal)))))))))
+        (compound_statement))
+      (property_declaration
+        (type_descriptor
+          (primitive_type))
+        (identifier)
         (compound_statement)
         (compound_statement
           (property_get
