@@ -282,3 +282,112 @@ import ab;
     (identifier))
   (import_statement
     (identifier)))
+
+================================================================================
+__subscript
+================================================================================
+
+struct MyType
+{
+    int val[12];
+    __subscript(int x, int y) -> int
+    {
+        get { return val[x*3 + y]; }
+        set { val[x*3+y] = newValue; }
+    }
+};
+--------------------------------------------------------------------------------
+
+(translation_unit
+  (struct_specifier
+    (type_identifier)
+    (field_declaration_list
+      (field_declaration
+        (primitive_type)
+        (array_declarator
+          (field_identifier)
+          (number_literal)))
+      (subscript_declaraion
+        (parameter_list
+          (parameter_declaration
+            (primitive_type)
+            (identifier))
+          (parameter_declaration
+            (primitive_type)
+            (identifier)))
+        (trailing_return_type
+          (type_descriptor
+            (primitive_type)))
+        (compound_statement)
+        (compound_statement
+          (property_get
+            (compound_statement
+              (return_statement
+                (subscript_expression
+                  (identifier)
+                  (subscript_argument_list
+                    (binary_expression
+                      (binary_expression
+                        (identifier)
+                        (number_literal))
+                      (identifier)))))))
+          (property_set
+            (compound_statement
+              (expression_statement
+                (assignment_expression
+                  (subscript_expression
+                    (identifier)
+                    (subscript_argument_list
+                      (binary_expression
+                        (binary_expression
+                          (identifier)
+                          (number_literal))
+                        (identifier))))
+                  (identifier))))))
+        (compound_statement)))))
+
+================================================================================
+property
+================================================================================
+
+struct MyType
+{
+    property highBits : uint
+    {
+        get { return flag >> 16; }
+        set { flag = (flag & 0xFF) + (newValue << 16); }
+    }
+};
+--------------------------------------------------------------------------------
+
+(translation_unit
+  (struct_specifier
+    (type_identifier)
+    (field_declaration_list
+      (property_declaration
+        (identifier)
+        (type_descriptor
+          (type_identifier))
+        (compound_statement)
+        (compound_statement
+          (property_get
+            (compound_statement
+              (return_statement
+                (binary_expression
+                  (identifier)
+                  (number_literal)))))
+          (property_set
+            (compound_statement
+              (expression_statement
+                (assignment_expression
+                  (identifier)
+                  (binary_expression
+                    (parenthesized_expression
+                      (binary_expression
+                        (identifier)
+                        (number_literal)))
+                    (parenthesized_expression
+                      (binary_expression
+                        (identifier)
+                        (number_literal)))))))))
+        (compound_statement)))))

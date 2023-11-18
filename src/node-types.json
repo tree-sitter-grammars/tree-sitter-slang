@@ -1762,6 +1762,14 @@
           "named": true
         },
         {
+          "type": "property_get",
+          "named": true
+        },
+        {
+          "type": "property_set",
+          "named": true
+        },
+        {
           "type": "static_assert_declaration",
           "named": true
         },
@@ -2758,7 +2766,15 @@
           "named": true
         },
         {
+          "type": "property_declaration",
+          "named": true
+        },
+        {
           "type": "static_assert_declaration",
+          "named": true
+        },
+        {
+          "type": "subscript_declaraion",
           "named": true
         },
         {
@@ -5082,7 +5098,15 @@
           "named": true
         },
         {
+          "type": "property_declaration",
+          "named": true
+        },
+        {
           "type": "static_assert_declaration",
+          "named": true
+        },
+        {
+          "type": "subscript_declaraion",
           "named": true
         },
         {
@@ -5301,7 +5325,15 @@
           "named": true
         },
         {
+          "type": "property_declaration",
+          "named": true
+        },
+        {
           "type": "static_assert_declaration",
+          "named": true
+        },
+        {
+          "type": "subscript_declaraion",
           "named": true
         },
         {
@@ -5493,7 +5525,15 @@
           "named": true
         },
         {
+          "type": "property_declaration",
+          "named": true
+        },
+        {
           "type": "static_assert_declaration",
+          "named": true
+        },
+        {
+          "type": "subscript_declaraion",
           "named": true
         },
         {
@@ -5625,7 +5665,15 @@
           "named": true
         },
         {
+          "type": "property_declaration",
+          "named": true
+        },
+        {
           "type": "static_assert_declaration",
+          "named": true
+        },
+        {
+          "type": "subscript_declaraion",
           "named": true
         },
         {
@@ -5685,6 +5733,59 @@
       "types": [
         {
           "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "property_declaration",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "compound_statement",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "type_descriptor",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "property_get",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "compound_statement",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "property_set",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "compound_statement",
           "named": true
         }
       ]
@@ -6182,6 +6283,29 @@
         },
         {
           "type": "initializer_list",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "subscript_declaraion",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "compound_statement",
+          "named": true
+        },
+        {
+          "type": "parameter_list",
+          "named": true
+        },
+        {
+          "type": "trailing_return_type",
           "named": true
         }
       ]
@@ -7631,6 +7755,10 @@
     "named": false
   },
   {
+    "type": "__init",
+    "named": false
+  },
+  {
     "type": "__inline",
     "named": false
   },
@@ -7644,6 +7772,10 @@
   },
   {
     "type": "__stdcall",
+    "named": false
+  },
+  {
+    "type": "__subscript",
     "named": false
   },
   {
@@ -7851,6 +7983,10 @@
     "named": false
   },
   {
+    "type": "get",
+    "named": false
+  },
+  {
     "type": "globallycoherent",
     "named": false
   },
@@ -8027,6 +8163,10 @@
     "named": false
   },
   {
+    "type": "property",
+    "named": false
+  },
+  {
     "type": "protected",
     "named": false
   },
@@ -8064,6 +8204,10 @@
   },
   {
     "type": "sample",
+    "named": false
+  },
+  {
+    "type": "set",
     "named": false
   },
   {

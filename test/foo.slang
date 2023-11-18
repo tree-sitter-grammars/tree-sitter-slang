@@ -30,4 +30,34 @@ extension MyObject : IBar, IBar2
 {
     float bar() { return 1.0f; }
     float bar2() { return 2.0f; }
-};;
+};
+
+struct MyType
+{
+    int val[12];
+    __subscript(int x, int y) -> int
+    {
+        get { return val[x*3 + y]; }
+        set { val[x*3+y] = newValue; }
+    }
+};
+
+struct MyType
+{
+    int myVal;
+    __init()
+    {
+        myVal = 10;
+    }
+};
+
+struct MyType
+{
+    uint flag;
+
+    property highBits : uint
+    {
+        get { return flag >> 16; }
+        set { flag = (flag & 0xFF) + (newValue << 16); }
+    }
+};
