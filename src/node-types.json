@@ -2774,7 +2774,7 @@
           "named": true
         },
         {
-          "type": "subscript_declaraion",
+          "type": "subscript_declaration",
           "named": true
         },
         {
@@ -5106,7 +5106,7 @@
           "named": true
         },
         {
-          "type": "subscript_declaraion",
+          "type": "subscript_declaration",
           "named": true
         },
         {
@@ -5333,7 +5333,7 @@
           "named": true
         },
         {
-          "type": "subscript_declaraion",
+          "type": "subscript_declaration",
           "named": true
         },
         {
@@ -5533,7 +5533,7 @@
           "named": true
         },
         {
-          "type": "subscript_declaraion",
+          "type": "subscript_declaration",
           "named": true
         },
         {
@@ -5673,7 +5673,7 @@
           "named": true
         },
         {
-          "type": "subscript_declaraion",
+          "type": "subscript_declaration",
           "named": true
         },
         {
@@ -6289,7 +6289,7 @@
     }
   },
   {
-    "type": "subscript_declaraion",
+    "type": "subscript_declaration",
     "named": true,
     "fields": {},
     "children": {

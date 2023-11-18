@@ -87,9 +87,9 @@ module.exports = grammar(HLSL, {
         import_statement: $ => seq(optional("__exported"), "import", dotSep1($.identifier), ";"),
 
         // TODO: fix type_hinted_declarator
-        _field_declaration_list_item: ($, original) => choice(original, $.property_declaration, $.subscript_declaraion),
-        init_declaraion: $ => seq("__init", $.parameter_list, $.compound_statement),
-        subscript_declaraion: $ => seq("__subscript", $.parameter_list, optional($.trailing_return_type), alias(seq("{", repeat(choice($.property_get, $.property_set)), "}"), $.compound_statement)),
+        _field_declaration_list_item: ($, original) => choice(original, $.property_declaration, $.subscript_declaration),
+        init_declaration: $ => seq("__init", $.parameter_list, $.compound_statement),
+        subscript_declaration: $ => seq("__subscript", $.parameter_list, optional($.trailing_return_type), alias(seq("{", repeat(choice($.property_get, $.property_set)), "}"), $.compound_statement)),
         property_declaration: $ => seq("property",
             choice(seq($.identifier, ":", $.type_descriptor),
                 seq($.type_descriptor, $.identifier)),

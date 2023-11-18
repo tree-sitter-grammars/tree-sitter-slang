@@ -4504,7 +4504,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "subscript_declaraion"
+          "name": "subscript_declaration"
         }
       ]
     },
@@ -15286,7 +15286,7 @@
         }
       ]
     },
-    "init_declaraion": {
+    "init_declaration": {
       "type": "SEQ",
       "members": [
         {
@@ -15303,7 +15303,7 @@
         }
       ]
     },
-    "subscript_declaraion": {
+    "subscript_declaration": {
       "type": "SEQ",
       "members": [
         {

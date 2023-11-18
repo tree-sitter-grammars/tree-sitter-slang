@@ -307,7 +307,7 @@ struct MyType
         (array_declarator
           (field_identifier)
           (number_literal)))
-      (subscript_declaraion
+      (subscript_declaration
         (parameter_list
           (parameter_declaration
             (primitive_type)
