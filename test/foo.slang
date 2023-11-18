@@ -66,3 +66,30 @@ interface IFoo
 {
     property int count {get; set;}
 };
+
+extension uint : IPrintf
+{
+    // A `uint` only consumes one word in the variadic payload.
+    //
+    // Note: unlike the case for `IPrintable` above, the encoding
+    // for format args for `printf()` doesn't include type information.
+    //
+    uint getPrintfWordCount() { return 1; }
+
+    // Writing the required data to the payload for `printf()` is simple
+    void writePrintfWords(RWStructuredBuffer<uint> buffer, uint offset)
+    {
+        buffer[offset++] = this;
+    }
+};
+
+extension String : IPrintf
+{
+    uint getPrintfWordCount() { return 1; }
+
+    void writePrintfWords(RWStructuredBuffer<uint> buffer, uint offset)
+    {
+        buffer[offset++] = getStringHash(this);
+    }
+};
+

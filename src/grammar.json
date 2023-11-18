@@ -4505,6 +4505,10 @@
         {
           "type": "SYMBOL",
           "name": "subscript_declaration"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "init_declaration"
         }
       ]
     },

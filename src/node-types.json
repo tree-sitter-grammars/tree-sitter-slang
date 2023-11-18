@@ -2746,6 +2746,10 @@
           "named": true
         },
         {
+          "type": "init_declaration",
+          "named": true
+        },
+        {
           "type": "preproc_call",
           "named": true
         },
@@ -3817,6 +3821,25 @@
       "types": [
         {
           "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "init_declaration",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "compound_statement",
+          "named": true
+        },
+        {
+          "type": "parameter_list",
           "named": true
         }
       ]
@@ -5062,6 +5085,10 @@
           "named": true
         },
         {
+          "type": "init_declaration",
+          "named": true
+        },
+        {
           "type": "linkage_specification",
           "named": true
         },
@@ -5289,6 +5316,10 @@
           "named": true
         },
         {
+          "type": "init_declaration",
+          "named": true
+        },
+        {
           "type": "linkage_specification",
           "named": true
         },
@@ -5489,6 +5520,10 @@
           "named": true
         },
         {
+          "type": "init_declaration",
+          "named": true
+        },
+        {
           "type": "linkage_specification",
           "named": true
         },
@@ -5626,6 +5661,10 @@
         },
         {
           "type": "function_definition",
+          "named": true
+        },
+        {
+          "type": "init_declaration",
           "named": true
         },
         {
