@@ -363,6 +363,7 @@ struct MyType
         set { flag = (flag & 0xFF) + (newValue << 16); }
     }
 };
+
 --------------------------------------------------------------------------------
 
 (translation_unit
@@ -422,4 +423,29 @@ struct MyType
                       (binary_expression
                         (identifier)
                         (number_literal)))))))))
+        (compound_statement)))))
+
+================================================================================
+property get/set without block
+================================================================================
+
+interface IFoo
+{
+    property int count {get; set;}
+};
+
+--------------------------------------------------------------------------------
+
+(translation_unit
+  (interface_specifier
+    (type_identifier)
+    (field_declaration_list
+      (property_declaration
+        (type_descriptor
+          (primitive_type))
+        (identifier)
+        (compound_statement)
+        (compound_statement
+          (property_get)
+          (property_set))
         (compound_statement)))))

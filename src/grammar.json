@@ -15448,8 +15448,17 @@
           "value": "get"
         },
         {
-          "type": "SYMBOL",
-          "name": "compound_statement"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "compound_statement"
+            },
+            {
+              "type": "STRING",
+              "value": ";"
+            }
+          ]
         }
       ]
     },
@@ -15461,8 +15470,17 @@
           "value": "set"
         },
         {
-          "type": "SYMBOL",
-          "name": "compound_statement"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "compound_statement"
+            },
+            {
+              "type": "STRING",
+              "value": ";"
+            }
+          ]
         }
       ]
     }

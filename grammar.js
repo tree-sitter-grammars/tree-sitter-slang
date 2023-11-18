@@ -94,8 +94,8 @@ module.exports = grammar(HLSL, {
             choice(seq($.identifier, ":", $.type_descriptor),
                 seq($.type_descriptor, $.identifier)),
             alias(seq("{", repeat(choice($.property_get, $.property_set)), "}"), $.compound_statement)),
-        property_get: $ => seq("get", $.compound_statement),
-        property_set: $ => seq("set", $.compound_statement)
+        property_get: $ => seq("get", choice($.compound_statement, ";")),
+        property_set: $ => seq("set", choice($.compound_statement, ";")),
     }
 });
 
