@@ -61,3 +61,8 @@ struct MyType
         set { flag = (flag & 0xFF) + (newValue << 16); }
     }
 };
+
+interface IFoo
+{
+    property int count {get; set;}
+};
