@@ -93,3 +93,18 @@ extension String : IPrintf
     }
 };
 
+
+namespace foo {
+extension uint : IPrintf
+{
+    void writePrintfWords(RWStructuredBuffer<uint> buffer, uint offset)
+    {
+        buffer[offset++] = this;
+    }
+}
+
+struct
+{
+    int x,y;
+}
+}

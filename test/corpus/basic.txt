@@ -434,22 +434,20 @@ Properties {
 --------------------------------------------------------------------------------
 
 (translation_unit
-  (expression_statement
-    (compound_literal_expression
-      (type_identifier)
-      (initializer_list
-        (assignment_expression
-          (call_expression
-            (identifier)
-            (argument_list
-              (string_literal
-                (string_content))
-              (number_literal)))
-          (ERROR
+  (type_identifier)
+  (compound_statement
+    (expression_statement
+      (assignment_expression
+        (call_expression
+          (identifier)
+          (argument_list
             (string_literal
-              (string_content)))
-          (initializer_list))))
-    (MISSING ";")))
+              (string_content))
+            (number_literal)))
+        (string_literal
+          (string_content)))
+      (MISSING ";"))
+    (compound_statement)))
 
 ================================================================================
 Blur
