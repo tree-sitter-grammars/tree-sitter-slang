@@ -10,6 +10,3 @@ Work in progress...
 Limitations/TODOs:
 
 - [ ] ambiguity between HLSL semantics and Slang type hints
-- [ ] extensions/interfaces are not accepted without terminating `;`, like for classes/structs in C++, but
-
-        Slang allows for a trailing semicolon (;) on struct declarations, but does not require it.

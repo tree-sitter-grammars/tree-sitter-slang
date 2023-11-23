@@ -11,12 +11,18 @@ module.exports = grammar(HLSL, {
 
     conflicts: ($, original) => original.concat([
         [$._declarator, $.type_hinted_declarator],
+        [$._type_specifier, $.compound_literal_expression],
+        [$._type_specifier, $._class_name],
+        [$.translation_unit, $._declaration_specifiers],
+        [$._declaration_specifiers, $.declaration_list],
+        [$.declaration_list, $._empty_declaration],
+        [$.declaration_list, $.initializer_list],
         //[$._scope_resolution]
     ]),
 
     rules: {
         _top_level_item: (_, original) => original,
-        _top_level_statement: ($, original) => choice(original, $.import_statement),
+        _top_level_statement: ($, original) => choice(original, $.import_statement, $._type_specifier),
 
         placeholder_type_specifier: $ => prec(1, seq(
             field('constraint', optional($._type_specifier)),
@@ -37,6 +43,17 @@ module.exports = grammar(HLSL, {
                 $.init_declarator
             ))),
             ';'
+        ),
+
+        //compound_statement: $ => seq(
+        //'{',
+        //repeat(choice($._block_item, $._type_specifier)),
+        //'}',
+        //),
+        declaration_list: $ => seq(
+            '{',
+            repeat(choice($._block_item, $._type_specifier)),
+            '}',
         ),
 
         type_hinted_declarator: $ => seq($.identifier, $.type_hint),
@@ -98,13 +115,13 @@ module.exports = grammar(HLSL, {
     },
 
     //_empty_declaration: $ => seq(
-      //$._type_specifier,
-      //optional(';'),
+    //$._type_specifier,
+    //optional(';'),
     //),
     //declaration: $ => seq(
-      //$._declaration_specifiers,
-      //$._declaration_declarator,
-      //optional(';'),
+    //$._declaration_specifiers,
+    //$._declaration_declarator,
+    //optional(';'),
     //),
 });
 
