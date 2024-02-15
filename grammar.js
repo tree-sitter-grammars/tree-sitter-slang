@@ -111,7 +111,7 @@ module.exports = grammar(HLSL, {
             alias(seq("{", repeat(choice($.property_get, $.property_set)), "}"), $.compound_statement)),
         property_get: $ => seq("get", choice($.compound_statement, ";")),
         property_set: $ => seq("set", choice($.compound_statement, ";")),
-        associatedtype_declaration: $ => seq("associatedtype", $.identifier, optional($.base_class_clause), ";"),
+        associatedtype_declaration: $ => seq("associatedtype", $._type_identifier, optional($.base_class_clause), ";"),
         associatedtype_specifier: $ => prec.right(seq($._type_specifier, ".", $._type_specifier))
     },
 });

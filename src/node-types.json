@@ -901,7 +901,7 @@
           "named": true
         },
         {
-          "type": "identifier",
+          "type": "type_identifier",
           "named": true
         }
       ]
