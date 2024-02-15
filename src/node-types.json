@@ -889,6 +889,25 @@
     }
   },
   {
+    "type": "associatedtype_declaration",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "base_class_clause",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "associatedtype_specifier",
     "named": true,
     "fields": {},
@@ -2750,6 +2769,10 @@
         },
         {
           "type": "alias_declaration",
+          "named": true
+        },
+        {
+          "type": "associatedtype_declaration",
           "named": true
         },
         {
@@ -5100,6 +5123,10 @@
           "named": true
         },
         {
+          "type": "associatedtype_declaration",
+          "named": true
+        },
+        {
           "type": "concept_definition",
           "named": true
         },
@@ -5244,6 +5271,10 @@
           "named": true
         },
         {
+          "type": "associatedtype_declaration",
+          "named": true
+        },
+        {
           "type": "concept_definition",
           "named": true
         },
@@ -5360,6 +5391,10 @@
         },
         {
           "type": "alias_declaration",
+          "named": true
+        },
+        {
+          "type": "associatedtype_declaration",
           "named": true
         },
         {
@@ -5571,6 +5606,10 @@
           "named": true
         },
         {
+          "type": "associatedtype_declaration",
+          "named": true
+        },
+        {
           "type": "concept_definition",
           "named": true
         },
@@ -5716,6 +5755,10 @@
         },
         {
           "type": "alias_declaration",
+          "named": true
+        },
+        {
+          "type": "associatedtype_declaration",
           "named": true
         },
         {
@@ -8061,6 +8104,10 @@
   },
   {
     "type": "asm",
+    "named": false
+  },
+  {
+    "type": "associatedtype",
     "named": false
   },
   {
