@@ -102,7 +102,7 @@ module.exports = grammar(HLSL, {
 
         import_statement: $ => seq(optional("__exported"), "import", dotSep1($.identifier), ";"),
 
-        _field_declaration_list_item: ($, original) => choice(original, $.property_declaration, $.subscript_declaration, $.init_declaration),
+        _field_declaration_list_item: ($, original) => choice(original, $.property_declaration, $.subscript_declaration, $.init_declaration, $.associatedtype_declaration),
         init_declaration: $ => seq("__init", $.parameter_list, $.compound_statement),
         subscript_declaration: $ => seq("__subscript", $.parameter_list, optional($.trailing_return_type), alias(seq("{", repeat(choice($.property_get, $.property_set)), "}"), $.compound_statement)),
         property_declaration: $ => seq("property",
@@ -111,6 +111,7 @@ module.exports = grammar(HLSL, {
             alias(seq("{", repeat(choice($.property_get, $.property_set)), "}"), $.compound_statement)),
         property_get: $ => seq("get", choice($.compound_statement, ";")),
         property_set: $ => seq("set", choice($.compound_statement, ";")),
+        associatedtype_declaration: $ => seq("associatedtype", $.identifier, optional($.base_class_clause), ";"),
         associatedtype_specifier: $ => prec.right(seq($._type_specifier, ".", $._type_specifier))
     },
 });

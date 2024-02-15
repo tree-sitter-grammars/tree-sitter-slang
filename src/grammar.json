@@ -5497,6 +5497,10 @@
         {
           "type": "SYMBOL",
           "name": "init_declaration"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "associatedtype_declaration"
         }
       ]
     },
@@ -17241,6 +17245,35 @@
               "value": ";"
             }
           ]
+        }
+      ]
+    },
+    "associatedtype_declaration": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "associatedtype"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "base_class_clause"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": ";"
         }
       ]
     },
