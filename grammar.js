@@ -17,7 +17,6 @@ module.exports = grammar(HLSL, {
         [$._declaration_specifiers, $.declaration_list],
         [$.declaration_list, $._empty_declaration],
         [$.declaration_list, $.initializer_list],
-        //[$._scope_resolution]
     ]),
 
     rules: {
@@ -69,7 +68,7 @@ module.exports = grammar(HLSL, {
             $._class_declaration,
         ),
 
-        _type_specifier: ($, original) => choice(original, $.interface_specifier, $.extension_specifier),
+        _type_specifier: ($, original) => choice(original, $.interface_specifier, $.extension_specifier, $.associatedtype_specifier),
 
         template_argument_list: $ => seq(
             '<',
@@ -112,17 +111,8 @@ module.exports = grammar(HLSL, {
             alias(seq("{", repeat(choice($.property_get, $.property_set)), "}"), $.compound_statement)),
         property_get: $ => seq("get", choice($.compound_statement, ";")),
         property_set: $ => seq("set", choice($.compound_statement, ";")),
+        associatedtype_specifier: $ => prec.right(seq($._type_specifier, ".", $._type_specifier))
     },
-
-    //_empty_declaration: $ => seq(
-    //$._type_specifier,
-    //optional(';'),
-    //),
-    //declaration: $ => seq(
-    //$._declaration_specifiers,
-    //$._declaration_declarator,
-    //optional(';'),
-    //),
 });
 
 function commaSep(rule) {

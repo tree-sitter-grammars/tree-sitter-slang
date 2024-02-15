@@ -416,6 +416,10 @@
     "named": true,
     "subtypes": [
       {
+        "type": "associatedtype_specifier",
+        "named": true
+      },
+      {
         "type": "class_specifier",
         "named": true
       },
@@ -882,6 +886,21 @@
           }
         ]
       }
+    }
+  },
+  {
+    "type": "associatedtype_specifier",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "_type_specifier",
+          "named": true
+        }
+      ]
     }
   },
   {
