@@ -625,3 +625,214 @@ struct
             (primitive_type)
             (field_identifier)
             (field_identifier)))))))
+
+================================================================================
+Associated type
+================================================================================
+
+
+interface IBase
+{
+     associatedtype V;
+     V sub(V a0, V a1);
+}
+
+--------------------------------------------------------------------------------
+
+(translation_unit
+  (interface_specifier
+    (type_identifier)
+    (field_declaration_list
+      (field_declaration
+        (type_identifier)
+        (field_identifier))
+      (field_declaration
+        (type_identifier)
+        (function_declarator
+          (field_identifier)
+          (parameter_list
+            (parameter_declaration
+              (type_identifier)
+              (identifier))
+            (parameter_declaration
+              (type_identifier)
+              (identifier))))))))
+
+================================================================================
+Associated type descriptor
+================================================================================
+
+struct Simple : ISimple
+{
+    typedef Val U;
+    Val.V add(U v0, U v1)
+    {
+        return v0.sub(4, v1.sub(1,2));
+    }
+};
+
+interface ISimple
+{
+    associatedtype U : IBase;
+    U.V add(U v0, U v1);
+}
+--------------------------------------------------------------------------------
+
+(translation_unit
+  (struct_specifier
+    (type_identifier)
+    (base_class_clause
+      (type_identifier))
+    (field_declaration_list
+      (type_definition
+        (type_identifier)
+        (type_identifier))
+      (function_definition
+        (associatedtype_specifier
+          (type_identifier)
+          (type_identifier))
+        (function_declarator
+          (field_identifier)
+          (parameter_list
+            (parameter_declaration
+              (type_identifier)
+              (identifier))
+            (parameter_declaration
+              (type_identifier)
+              (identifier))))
+        (compound_statement
+          (return_statement
+            (call_expression
+              (field_expression
+                (identifier)
+                (field_identifier))
+              (argument_list
+                (number_literal)
+                (call_expression
+                  (field_expression
+                    (identifier)
+                    (field_identifier))
+                  (argument_list
+                    (number_literal)
+                    (number_literal))))))))))
+  (interface_specifier
+    (type_identifier)
+    (field_declaration_list
+      (field_declaration
+        (type_identifier)
+        (field_identifier)
+        (bitfield_clause
+          (identifier)))
+      (field_declaration
+        (associatedtype_specifier
+          (type_identifier)
+          (type_identifier))
+        (function_declarator
+          (field_identifier)
+          (parameter_list
+            (parameter_declaration
+              (type_identifier)
+              (identifier))
+            (parameter_declaration
+              (type_identifier)
+              (identifier))))))))
+
+================================================================================
+Random things in a namespace
+================================================================================
+namespace foo {
+extension uint : IPrintf
+{
+    void writePrintfWords(RWStructuredBuffer<uint> buffer, uint offset)
+    {
+        buffer[offset++] = this;
+    }
+}
+
+struct
+{
+    int x,y;
+}
+}
+
+
+struct Val : IBase
+{
+    typedef int V;
+    int base;
+    V sub(V a0, V a1)
+    {
+        return a0 - a1 + base;
+    }
+};
+
+--------------------------------------------------------------------------------
+
+(translation_unit
+  (namespace_definition
+    (namespace_identifier)
+    (declaration_list
+      (extension_specifier
+        (type_identifier)
+        (base_class_clause
+          (type_identifier))
+        (field_declaration_list
+          (function_definition
+            (primitive_type)
+            (function_declarator
+              (field_identifier)
+              (parameter_list
+                (parameter_declaration
+                  (template_type
+                    (type_identifier)
+                    (template_argument_list
+                      (type_descriptor
+                        (type_identifier))))
+                  (identifier))
+                (parameter_declaration
+                  (type_identifier)
+                  (identifier))))
+            (compound_statement
+              (expression_statement
+                (assignment_expression
+                  (subscript_expression
+                    (identifier)
+                    (subscript_argument_list
+                      (update_expression
+                        (identifier))))
+                  (this)))))))
+      (struct_specifier
+        (field_declaration_list
+          (field_declaration
+            (primitive_type)
+            (field_identifier)
+            (field_identifier))))))
+  (struct_specifier
+    (type_identifier)
+    (base_class_clause
+      (type_identifier))
+    (field_declaration_list
+      (type_definition
+        (primitive_type)
+        (type_identifier))
+      (field_declaration
+        (primitive_type)
+        (field_identifier))
+      (function_definition
+        (type_identifier)
+        (function_declarator
+          (field_identifier)
+          (parameter_list
+            (parameter_declaration
+              (type_identifier)
+              (identifier))
+            (parameter_declaration
+              (type_identifier)
+              (identifier))))
+        (compound_statement
+          (return_statement
+            (binary_expression
+              (binary_expression
+                (identifier)
+                (identifier))
+              (identifier))))))))

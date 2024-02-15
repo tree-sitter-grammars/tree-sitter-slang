@@ -4814,6 +4814,10 @@
         {
           "type": "SYMBOL",
           "name": "extension_specifier"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "associatedtype_specifier"
         }
       ]
     },
@@ -17239,6 +17243,27 @@
           ]
         }
       ]
+    },
+    "associatedtype_specifier": {
+      "type": "PREC_RIGHT",
+      "value": 0,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "_type_specifier"
+          },
+          {
+            "type": "STRING",
+            "value": "."
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_type_specifier"
+          }
+        ]
+      }
     }
   },
   "extras": [
