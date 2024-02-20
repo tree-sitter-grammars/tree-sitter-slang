@@ -80,7 +80,7 @@ module.exports = grammar(HLSL, {
             )),
             alias(token(prec(1, '>')), '>'),
         ),
-        interface_requirements: $ => prec.left(seq(":", commaSep1($.identifier))),
+        interface_requirements: $ => prec.left(seq(":", andSep1($.identifier))),
 
         binary_expression: ($, original) => {
             const table = [
@@ -126,4 +126,8 @@ function commaSep1(rule) {
 
 function dotSep1(rule) {
     return seq(rule, repeat(seq('.', rule)))
+}
+
+function andSep1(rule) {
+    return seq(rule, repeat(seq('&', rule)))
 }
