@@ -899,7 +899,7 @@ Where clause
 --------------------------------------------------------------------------------
 
 (translation_unit
-  (declaration
+  (function_definition
     (primitive_type)
     (function_declarator
       (template_function
@@ -910,21 +910,17 @@ Where clause
       (parameter_list
         (parameter_declaration
           (type_identifier)
-          (identifier))))
-    (MISSING ";"))
-  (declaration
-    (type_identifier)
-    (type_hinted_declarator
-      (identifier)
-      (type_hint
-        (type_identifier)))
-    (identifier)
-    (semantics)
-    (semantics
-      (compound_literal_expression
-        (type_identifier)
-        (initializer_list)))
-    (MISSING ";")))
+          (identifier)))
+      (where_clause
+        (type_descriptor
+          (type_identifier))
+        (interface_requirements
+          (identifier))
+        (type_descriptor
+          (type_identifier)))
+      (semantics
+        (identifier)))
+    (compound_statement)))
 
 ================================================================================
 Fancy generics

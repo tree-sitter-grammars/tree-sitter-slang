@@ -585,6 +585,10 @@
         {
           "type": "virtual_specifier",
           "named": true
+        },
+        {
+          "type": "where_clause",
+          "named": true
         }
       ]
     }
@@ -3447,6 +3451,10 @@
         },
         {
           "type": "virtual_specifier",
+          "named": true
+        },
+        {
+          "type": "where_clause",
           "named": true
         }
       ]
@@ -7669,6 +7677,25 @@
     "fields": {}
   },
   {
+    "type": "where_clause",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "interface_requirements",
+          "named": true
+        },
+        {
+          "type": "type_descriptor",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "while_statement",
     "named": true,
     "fields": {
@@ -8664,6 +8691,10 @@
   },
   {
     "type": "volatile",
+    "named": false
+  },
+  {
+    "type": "where",
     "named": false
   },
   {

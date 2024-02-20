@@ -82,6 +82,9 @@ module.exports = grammar(HLSL, {
         ),
         interface_requirements: $ => prec.left(seq(":", andSep1($.identifier))),
 
+        _function_declarator_seq: ($, original) => seq(original, optional($.where_clause)),
+        where_clause: ($, original) => prec.right(seq("where", commaSep1(seq($.type_descriptor, optional($.interface_requirements), optional(seq("=", $.type_descriptor)))))),
+
         binary_expression: ($, original) => {
             const table = [
                 ['is', PREC.IS],
