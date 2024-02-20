@@ -888,3 +888,94 @@ void some_func<TParam:IPackable&IFloat, Foo: Bar, T>(TParam a)
           (type_identifier)
           (identifier))))
     (compound_statement)))
+
+================================================================================
+Where clause
+================================================================================
+    void myFunc<T>(T val)
+        where T : Foo,
+        	  T : Bar
+    {}
+--------------------------------------------------------------------------------
+
+(translation_unit
+  (declaration
+    (primitive_type)
+    (function_declarator
+      (template_function
+        (identifier)
+        (template_argument_list
+          (type_descriptor
+            (type_identifier))))
+      (parameter_list
+        (parameter_declaration
+          (type_identifier)
+          (identifier))))
+    (MISSING ";"))
+  (declaration
+    (type_identifier)
+    (type_hinted_declarator
+      (identifier)
+      (type_hint
+        (type_identifier)))
+    (identifier)
+    (semantics)
+    (semantics
+      (compound_literal_expression
+        (type_identifier)
+        (initializer_list)))
+    (MISSING ";")))
+
+================================================================================
+Fancy generics
+================================================================================
+
+    void someFunc<
+    	T, 					// type parameter
+    	T : X, 				// type parameter with constraint
+    	T = Y, 				// type parameter with default
+    	T : X = Y, 			// type parameter with constraint and default
+    	let N : int,		// value parameter (type must be explicit)
+    	let N : int = 3>	// value parameter with default
+    	()
+    { }
+--------------------------------------------------------------------------------
+
+(translation_unit
+  (function_definition
+    (primitive_type)
+    (function_declarator
+      (template_function
+        (identifier)
+        (template_argument_list
+          (type_descriptor
+            (type_identifier))
+          (comment)
+          (type_descriptor
+            (type_identifier))
+          (interface_requirements
+            (identifier))
+          (comment)
+          (type_descriptor
+            (type_identifier))
+          (type_descriptor
+            (type_identifier))
+          (comment)
+          (type_descriptor
+            (type_identifier))
+          (interface_requirements
+            (identifier))
+          (type_descriptor
+            (type_identifier))
+          (comment)
+          (identifier)
+          (interface_requirements
+            (identifier))
+          (comment)
+          (identifier)
+          (interface_requirements
+            (identifier))
+          (number_literal)))
+      (comment)
+      (parameter_list))
+    (compound_statement)))
