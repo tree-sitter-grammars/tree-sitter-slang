@@ -834,3 +834,57 @@ struct Val : IBase
                 (identifier)
                 (identifier))
               (identifier))))))))
+
+================================================================================
+Double iface
+================================================================================
+
+void some_func<TParam:IPackable&IFloat>(TParam a)
+{
+
+}
+void some_func<TParam:IPackable&IFloat, Foo: Bar, T>(TParam a)
+{
+
+}
+--------------------------------------------------------------------------------
+
+(translation_unit
+  (function_definition
+    (primitive_type)
+    (function_declarator
+      (template_function
+        (identifier)
+        (template_argument_list
+          (type_descriptor
+            (type_identifier))
+          (interface_requirements
+            (identifier)
+            (identifier))))
+      (parameter_list
+        (parameter_declaration
+          (type_identifier)
+          (identifier))))
+    (compound_statement))
+  (function_definition
+    (primitive_type)
+    (function_declarator
+      (template_function
+        (identifier)
+        (template_argument_list
+          (type_descriptor
+            (type_identifier))
+          (interface_requirements
+            (identifier)
+            (identifier))
+          (type_descriptor
+            (type_identifier))
+          (interface_requirements
+            (identifier))
+          (type_descriptor
+            (type_identifier))))
+      (parameter_list
+        (parameter_declaration
+          (type_identifier)
+          (identifier))))
+    (compound_statement)))

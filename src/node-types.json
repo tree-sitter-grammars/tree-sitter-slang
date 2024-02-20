@@ -594,11 +594,15 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
           "type": "_abstract_declarator",
+          "named": true
+        },
+        {
+          "type": "ms_call_modifier",
           "named": true
         }
       ]
@@ -623,6 +627,10 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "ms_pointer_modifier",
+          "named": true
+        },
         {
           "type": "type_qualifier",
           "named": true
@@ -1932,6 +1940,10 @@
           {
             "type": "_expression",
             "named": true
+          },
+          {
+            "type": "comma_expression",
+            "named": true
           }
         ]
       }
@@ -2888,6 +2900,10 @@
             "named": true
           },
           {
+            "type": "qualified_identifier",
+            "named": true
+          },
+          {
             "type": "template_method",
             "named": true
           }
@@ -3577,6 +3593,10 @@
         "multiple": true,
         "required": false,
         "types": [
+          {
+            "type": "concatenated_string",
+            "named": true
+          },
           {
             "type": "string_literal",
             "named": true
@@ -4815,7 +4835,7 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
@@ -4828,6 +4848,10 @@
         },
         {
           "type": "_type_declarator",
+          "named": true
+        },
+        {
+          "type": "ms_call_modifier",
           "named": true
         }
       ]
