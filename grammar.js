@@ -73,8 +73,8 @@ module.exports = grammar(HLSL, {
         template_argument_list: $ => seq(
             '<',
             commaSep(choice(
-                prec.dynamic(4, seq($.type_descriptor, $.interface_requirements)),
-                prec.dynamic(3, $.type_descriptor),
+                prec.dynamic(4, seq("let", $.identifier, optional($.interface_requirements), optional(seq("=", $._expression)))),
+                prec.dynamic(3, seq($.type_descriptor, optional($.interface_requirements), optional(seq("=", $.type_descriptor)))),
                 prec.dynamic(2, alias($.type_parameter_pack_expansion, $.parameter_pack_expansion)),
                 prec.dynamic(1, $._expression),
             )),
