@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-slang",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Slang shader language grammar for tree-sitter (based on tree-sitter-hls)",
   "main": "bindings/node",
   "keywords": [
