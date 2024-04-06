@@ -15,6 +15,9 @@ jobs:
       - uses: tree-sitter/setup-action@v1
         with:
           install-lib: false
-      - uses: tree-sitter/parser-test-action@v1.2
+      - uses: theHamsta/parser-test-action@check-pypi-metadata
         with:
           test-library: true
+          test-python: true
+          test-rust: true
+          test-node: true
