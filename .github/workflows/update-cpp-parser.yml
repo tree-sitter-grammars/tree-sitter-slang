@@ -20,7 +20,7 @@ jobs:
       - uses: tree-sitter/setup-action@v1
         with:
           install-lib: false
-      - uses: tree-sitter/parser-update-action@v1.1
+      - uses: tree-sitter/parser-update-action@master
         with:
           parent-name: cpp
           language-name: slang
