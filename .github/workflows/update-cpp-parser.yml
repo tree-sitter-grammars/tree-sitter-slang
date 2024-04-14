@@ -22,5 +22,5 @@ jobs:
           install-lib: false
       - uses: tree-sitter/parser-update-action@master
         with:
-          parent-name: cpp
+          parent-name: hlsl
           language-name: slang
