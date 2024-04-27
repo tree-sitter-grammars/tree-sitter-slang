@@ -20,7 +20,7 @@ jobs:
       - uses: tree-sitter/setup-action@v1
         with:
           install-lib: false
-      - uses: tree-sitter/parser-update-action@master
+      - uses: theHamsta/parser-update-action@allow-upper-case-in-github-username
         with:
           parent-name: hlsl
           language-name: slang
