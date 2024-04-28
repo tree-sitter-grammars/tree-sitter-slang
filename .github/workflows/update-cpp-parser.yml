@@ -5,7 +5,6 @@ on:
     - cron: "0 0 * * 0"
   workflow_dispatch:
   push:
-    branches: [master]
 
 permissions:
   contents: write
@@ -20,7 +19,7 @@ jobs:
       - uses: tree-sitter/setup-action@v1
         with:
           install-lib: false
-      - uses: theHamsta/parser-update-action@allow-upper-case-in-github-username
+      - uses: theHamsta/parser-update-action@test-regex-failure-warning
         with:
           parent-name: hlsl
           language-name: slang
