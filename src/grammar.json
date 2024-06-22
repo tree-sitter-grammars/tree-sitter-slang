@@ -18032,10 +18032,6 @@
       "_class_name"
     ],
     [
-      "translation_unit",
-      "_declaration_specifiers"
-    ],
-    [
       "_declaration_specifiers",
       "declaration_list"
     ],
@@ -18046,10 +18042,6 @@
     [
       "declaration_list",
       "_empty_declaration"
-    ],
-    [
-      "declaration_list",
-      "initializer_list"
     ]
   ],
   "precedences": [
