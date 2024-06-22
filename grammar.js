@@ -11,34 +11,33 @@ module.exports = grammar(HLSL, {
 
     conflicts: ($, original) => original.concat([
         [$._declarator, $.type_hinted_declarator],
-        [$._type_specifier, $.compound_literal_expression],
-        [$._type_specifier, $._class_name],
-        [$.translation_unit, $._declaration_specifiers],
+        [$.type_specifier, $.compound_literal_expression],
+        [$.type_specifier, $._class_name],
         [$._declaration_specifiers, $.declaration_list],
+        [$._declaration_specifiers, $._top_level_statement],
         [$.declaration_list, $._empty_declaration],
-        [$.declaration_list, $.initializer_list],
     ]),
 
     rules: {
         _top_level_item: (_, original) => original,
-        _top_level_statement: ($, original) => choice(original, $.import_statement, $._type_specifier),
+        _top_level_statement: ($, original) => choice(original, $.import_statement, $.type_specifier),
 
         placeholder_type_specifier: $ => prec(1, seq(
-            field('constraint', optional($._type_specifier)),
+            field('constraint', optional($.type_specifier)),
             choice("var", "let", "This"),
         )),
 
         init_declarator: $ => seq(
             field('declarator', choice($._declarator, $.type_hinted_declarator)),
             '=',
-            field('value', choice($.initializer_list, $._expression)),
+            field('value', choice($.initializer_list, $.expression)),
         ),
 
         declaration: $ => seq(
             $._declaration_specifiers,
             commaSep1(field('declarator', choice(
                 // type hint has ambiguity with semantics in struct declarations
-                seq(choice($._declarator, $.type_hinted_declarator), optional(alias(seq(':', $._expression), $.semantics))),
+                seq(choice($._declarator, $.type_hinted_declarator), optional(alias(seq(':', $.expression), $.semantics))),
                 $.init_declarator
             ))),
             ';'
@@ -46,12 +45,12 @@ module.exports = grammar(HLSL, {
 
         //compound_statement: $ => seq(
         //'{',
-        //repeat(choice($._block_item, $._type_specifier)),
+        //repeat(choice($._block_item, $.type_specifier)),
         //'}',
         //),
         declaration_list: $ => seq(
             '{',
-            repeat(choice($._block_item, $._type_specifier)),
+            repeat(choice($._block_item, $.type_specifier)),
             '}',
         ),
 
@@ -68,15 +67,15 @@ module.exports = grammar(HLSL, {
             $._class_declaration,
         ),
 
-        _type_specifier: ($, original) => choice(original, $.interface_specifier, $.extension_specifier, $.associatedtype_specifier),
+        type_specifier: ($, original) => choice(original, $.interface_specifier, $.extension_specifier, $.associatedtype_specifier),
 
         template_argument_list: $ => seq(
             '<',
             commaSep(choice(
-                prec.dynamic(4, seq("let", $.identifier, optional($.interface_requirements), optional(seq("=", $._expression)))),
+                prec.dynamic(4, seq("let", $.identifier, optional($.interface_requirements), optional(seq("=", $.expression)))),
                 prec.dynamic(3, seq($.type_descriptor, optional($.interface_requirements), optional(seq("=", $.type_descriptor)))),
                 prec.dynamic(2, alias($.type_parameter_pack_expansion, $.parameter_pack_expansion)),
-                prec.dynamic(1, $._expression),
+                prec.dynamic(1, $.expression),
             )),
             alias(token(prec(1, '>')), '>'),
         ),
@@ -95,10 +94,10 @@ module.exports = grammar(HLSL, {
                 ...original.members,
                 ...table.map(([operator, precedence]) => {
                     return prec.left(precedence, seq(
-                        field('left', $._expression),
+                        field('left', $.expression),
                         // @ts-ignore
                         field('operator', operator),
-                        field('right', $._expression),
+                        field('right', $.expression),
                     ));
                 }));
         },
@@ -115,7 +114,7 @@ module.exports = grammar(HLSL, {
         property_get: $ => seq("get", choice($.compound_statement, ";")),
         property_set: $ => seq("set", choice($.compound_statement, ";")),
         associatedtype_declaration: $ => seq("associatedtype", $._type_identifier, optional($.base_class_clause), ";"),
-        associatedtype_specifier: $ => prec.right(seq($._type_specifier, ".", $._type_specifier))
+        associatedtype_specifier: $ => prec.right(seq($.type_specifier, ".", $.type_specifier))
     },
 });
 
