@@ -178,16 +178,15 @@ cbuffer MyBuffer
                   (type_identifier)))))))
       (declaration
         (type_identifier)
-        (type_hinted_declarator
-          (identifier)
-          (type_hint
-            (function_declarator
-              (type_identifier)
-              (parameter_list
-                (parameter_declaration
-                  (associatedtype_specifier
-                    (type_identifier)
-                    (type_identifier)))))))))))
+        (identifier)
+        (semantics)
+        (semantics
+          (call_expression
+            (identifier)
+            (argument_list
+              (field_expression
+                (identifier)
+                (field_identifier)))))))))
 
 ================================================================================
 Attributed fields
