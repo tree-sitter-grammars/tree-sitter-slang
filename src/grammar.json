@@ -1,9 +1,6 @@
 {
-  "0": "h",
-  "1": "l",
-  "2": "s",
-  "3": "l",
   "name": "slang",
+  "inherits": "hlsl",
   "word": "identifier",
   "rules": {
     "translation_unit": {
