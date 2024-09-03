@@ -208,6 +208,10 @@
         "named": true
       },
       {
+        "type": "extension_expression",
+        "named": true
+      },
+      {
         "type": "false",
         "named": true
       },
@@ -1076,10 +1080,6 @@
         },
         {
           "type": "type_identifier",
-          "named": true
-        },
-        {
-          "type": "virtual",
           "named": true
         }
       ]
@@ -2234,10 +2234,6 @@
         {
           "type": "type_qualifier",
           "named": true
-        },
-        {
-          "type": "virtual",
-          "named": true
         }
       ]
     }
@@ -2626,6 +2622,21 @@
     }
   },
   {
+    "type": "extension_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "extension_specifier",
     "named": true,
     "fields": {
@@ -2758,10 +2769,6 @@
         },
         {
           "type": "type_qualifier",
-          "named": true
-        },
-        {
-          "type": "virtual",
           "named": true
         }
       ]
@@ -3253,10 +3260,6 @@
         {
           "type": "type_qualifier",
           "named": true
-        },
-        {
-          "type": "virtual",
-          "named": true
         }
       ]
     }
@@ -3558,10 +3561,6 @@
         {
           "type": "type_qualifier",
           "named": true
-        },
-        {
-          "type": "virtual",
-          "named": true
         }
       ]
     }
@@ -3598,6 +3597,10 @@
             "named": true
           },
           {
+            "type": "raw_string_literal",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           }
@@ -3615,6 +3618,10 @@
         "types": [
           {
             "type": "concatenated_string",
+            "named": true
+          },
+          {
+            "type": "raw_string_literal",
             "named": true
           },
           {
@@ -4136,6 +4143,10 @@
       "required": true,
       "types": [
         {
+          "type": "declaration",
+          "named": true
+        },
+        {
           "type": "statement",
           "named": true
         }
@@ -4586,10 +4597,6 @@
         {
           "type": "type_qualifier",
           "named": true
-        },
-        {
-          "type": "virtual",
-          "named": true
         }
       ]
     }
@@ -4674,10 +4681,6 @@
         },
         {
           "type": "type_qualifier",
-          "named": true
-        },
-        {
-          "type": "virtual",
           "named": true
         }
       ]
@@ -4768,10 +4771,6 @@
         },
         {
           "type": "type_qualifier",
-          "named": true
-        },
-        {
-          "type": "virtual",
           "named": true
         }
       ]
@@ -4865,6 +4864,10 @@
       "types": [
         {
           "type": "comma_expression",
+          "named": true
+        },
+        {
+          "type": "compound_statement",
           "named": true
         },
         {
@@ -6840,10 +6843,6 @@
         {
           "type": "type_qualifier",
           "named": true
-        },
-        {
-          "type": "virtual",
-          "named": true
         }
       ]
     }
@@ -7656,10 +7655,6 @@
         {
           "type": "type_qualifier",
           "named": true
-        },
-        {
-          "type": "virtual",
-          "named": true
         }
       ]
     }
@@ -7890,10 +7885,6 @@
     "named": false
   },
   {
-    "type": "0",
-    "named": false
-  },
-  {
     "type": ":",
     "named": false
   },
@@ -8034,6 +8025,10 @@
     "named": false
   },
   {
+    "type": "_Nonnull",
+    "named": false
+  },
+  {
     "type": "_Noreturn",
     "named": false
   },
@@ -8043,6 +8038,10 @@
   },
   {
     "type": "__alignof__",
+    "named": false
+  },
+  {
+    "type": "__asm",
     "named": false
   },
   {
@@ -8703,7 +8702,7 @@
   },
   {
     "type": "virtual",
-    "named": true
+    "named": false
   },
   {
     "type": "volatile",
