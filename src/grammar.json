@@ -1,6 +1,9 @@
 {
+  "0": "h",
+  "1": "l",
+  "2": "s",
+  "3": "l",
   "name": "slang",
-  "inherits": "hlsl",
   "word": "identifier",
   "rules": {
     "translation_unit": {
@@ -6220,6 +6223,13 @@
                   "type": "BLANK"
                 }
               ]
+            },
+            {
+              "type": "REPEAT",
+              "content": {
+                "type": "SYMBOL",
+                "name": "attribute_specifier"
+              }
             }
           ]
         },
@@ -9182,6 +9192,10 @@
         {
           "type": "STRING",
           "value": "volatile"
+        },
+        {
+          "type": "STRING",
+          "value": "__volatile__"
         },
         {
           "type": "STRING",
