@@ -9,7 +9,15 @@ const PREC = Object.assign(C.PREC, {
 module.exports = grammar(HLSL, {
     name: 'slang',
 
-    conflicts: ($, original) => original.concat([
+    conflicts: ($, original) => original.filter((s) => {
+        if (s.length === 2) {
+            const [l, r] = s;
+            if (l.name === $.parameter_list.name && r.name === $.argument_list.name) {
+                return false;
+            }
+        }
+        return true;
+    }).concat([
         [$._declarator, $.type_hinted_declarator],
         [$.type_specifier, $.compound_literal_expression],
         [$.type_specifier, $._class_name],

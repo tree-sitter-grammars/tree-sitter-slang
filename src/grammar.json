@@ -1,9 +1,7 @@
 {
-  "0": "h",
-  "1": "l",
-  "2": "s",
-  "3": "l",
+  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/grammar.schema.json",
   "name": "slang",
+  "inherits": "hlsl",
   "word": "identifier",
   "rules": {
     "translation_unit": {
@@ -17976,10 +17974,6 @@
       "expression",
       "_declarator",
       "type_specifier"
-    ],
-    [
-      "parameter_list",
-      "argument_list"
     ],
     [
       "type_specifier",
