@@ -7,7 +7,9 @@ let package = Package(
     products: [
         .library(name: "TreeSitterSlang", targets: ["TreeSitterSlang"]),
     ],
-    dependencies: [],
+    dependencies: [
+        .package(url: "https://github.com/ChimeHQ/SwiftTreeSitter", from: "0.8.0"),
+    ],
     targets: [
         .target(name: "TreeSitterSlang",
                 path: ".",
@@ -20,14 +22,12 @@ let package = Package(
                     "bindings/node",
                     "bindings/python",
                     "bindings/rust",
-                    "prebuilds",
                     "grammar.js",
                     "package.json",
                     "package-lock.json",
                     "pyproject.toml",
                     "setup.py",
                     "test",
-                    "examples",
                     ".editorconfig",
                     ".github",
                     ".gitignore",
@@ -38,11 +38,18 @@ let package = Package(
                     "src/parser.c",
                     "src/scanner.c",
                 ],
-                resources: [
-                    .copy("queries")
-                ],
+                /*resources: [*/
+                    /*.copy("queries")*/
+                /*],*/
                 publicHeadersPath: "bindings/swift",
-                cSettings: [.headerSearchPath("src")])
+                cSettings: [.headerSearchPath("src")]),
+         .testTarget(
+                name: "TreeSitterSlangTests",
+                dependencies: [
+                    "SwiftTreeSitter",
+                    "TreeSitterSlang",
+                ],
+                path: "bindings/swift/TreeSitterSlangTests")
     ],
     cLanguageStandard: .c11
 )
