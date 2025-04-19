@@ -11,7 +11,7 @@
     }
   ],
   "metadata": {
-    "version": "0.2.3",
+    "version": "0.3.0",
     "license": "MIT",
     "description": "Slang shader language grammar for tree-sitter (based on tree-sitter-hlsl)",
     "authors": [
