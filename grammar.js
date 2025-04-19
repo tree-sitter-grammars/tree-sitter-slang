@@ -18,6 +18,7 @@ module.exports = grammar(HLSL, {
         }
         return true;
     }).concat([
+        [$._top_level_statement, $._empty_declaration],
         [$._declarator, $.type_hinted_declarator],
         [$.type_specifier, $.compound_literal_expression],
         [$.type_specifier, $._class_name],
@@ -110,7 +111,7 @@ module.exports = grammar(HLSL, {
                 }));
         },
 
-        import_statement: $ => seq(optional("__exported"), "import", dotSep1($.identifier), ";"),
+        import_statement: $ => prec(2, seq(optional("__exported"), "import", dotSep1($.identifier), ";")),
 
         _field_declaration_list_item: ($, original) => choice(original, $.property_declaration, $.subscript_declaration, $.init_declaration, $.associatedtype_declaration),
         init_declaration: $ => seq("__init", $.parameter_list, $.compound_statement),
