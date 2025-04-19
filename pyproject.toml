@@ -27,3 +27,8 @@ core = ["tree-sitter~=0.22"]
 [tool.cibuildwheel]
 build = "cp39-*"
 build-frontend = "build"
+
+[dependency-groups]
+dev = [
+    "tree-sitter>=0.23.2",
+]
