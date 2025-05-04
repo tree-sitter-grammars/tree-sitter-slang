@@ -4394,6 +4394,10 @@
           "named": true
         },
         {
+          "type": "lambda_specifier",
+          "named": true
+        },
+        {
           "type": "noexcept",
           "named": true
         },
@@ -4407,10 +4411,6 @@
         },
         {
           "type": "trailing_return_type",
-          "named": true
-        },
-        {
-          "type": "type_qualifier",
           "named": true
         }
       ]
@@ -4476,6 +4476,11 @@
         ]
       }
     }
+  },
+  {
+    "type": "lambda_specifier",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "linkage_specification",
