@@ -14,6 +14,8 @@ jobs:
       - uses: tree-sitter/setup-action@v2
         with:
           install-lib: false
+      - name: "npm install"
+        run: "npm install"
       - name: Run tests
         uses: tree-sitter/parser-test-action@v3-pre
         with:
