@@ -2613,6 +2613,25 @@
     }
   },
   {
+    "type": "explicit_object_parameter_declaration",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "parameter_declaration",
+          "named": true
+        },
+        {
+          "type": "this",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "export_declaration",
     "named": true,
     "fields": {},
@@ -5099,6 +5118,10 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "explicit_object_parameter_declaration",
+          "named": true
+        },
         {
           "type": "optional_parameter_declaration",
           "named": true
@@ -8580,7 +8603,8 @@
   },
   {
     "type": "comment",
-    "named": true
+    "named": true,
+    "extra": true
   },
   {
     "type": "compl",
