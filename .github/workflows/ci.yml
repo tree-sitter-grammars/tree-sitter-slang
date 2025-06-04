@@ -15,7 +15,7 @@ jobs:
         with:
           install-lib: false
       - name: Run tests
-        uses: tree-sitter/parser-test-action@v2
+        uses: tree-sitter/parser-test-action@v3-pre
         with:
           test-rust: true
           test-node: true
