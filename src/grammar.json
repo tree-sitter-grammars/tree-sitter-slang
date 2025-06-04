@@ -6130,6 +6130,10 @@
                     },
                     {
                       "type": "SYMBOL",
+                      "name": "explicit_object_parameter_declaration"
+                    },
+                    {
+                      "type": "SYMBOL",
                       "name": "optional_parameter_declaration"
                     },
                     {
@@ -6157,6 +6161,10 @@
                           {
                             "type": "SYMBOL",
                             "name": "parameter_declaration"
+                          },
+                          {
+                            "type": "SYMBOL",
+                            "name": "explicit_object_parameter_declaration"
                           },
                           {
                             "type": "SYMBOL",
@@ -12237,37 +12245,53 @@
       ]
     },
     "template_instantiation": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "template"
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
+      "type": "PREC",
+      "value": 1,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "extern"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          },
+          {
+            "type": "STRING",
+            "value": "template"
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "_declaration_specifiers"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          },
+          {
+            "type": "FIELD",
+            "name": "declarator",
+            "content": {
               "type": "SYMBOL",
-              "name": "_declaration_specifiers"
-            },
-            {
-              "type": "BLANK"
+              "name": "_declarator"
             }
-          ]
-        },
-        {
-          "type": "FIELD",
-          "name": "declarator",
-          "content": {
-            "type": "SYMBOL",
-            "name": "_declarator"
+          },
+          {
+            "type": "STRING",
+            "value": ";"
           }
-        },
-        {
-          "type": "STRING",
-          "value": ";"
-        }
-      ]
+        ]
+      }
     },
     "template_parameter_list": {
       "type": "SEQ",
@@ -12534,6 +12558,19 @@
               "name": "optional_type_parameter_declaration"
             }
           ]
+        }
+      ]
+    },
+    "explicit_object_parameter_declaration": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "this"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "parameter_declaration"
         }
       ]
     },
@@ -18800,5 +18837,6 @@
     "_field_declarator",
     "_type_declarator",
     "_abstract_declarator"
-  ]
+  ],
+  "reserved": {}
 }
