@@ -17,7 +17,7 @@ jobs:
       - name: "npm install"
         run: "npm install"
       - name: Run tests
-        uses: tree-sitter/parser-test-action@v3-pre
+        uses: tree-sitter/parser-test-action@master
         with:
           test-rust: true
           test-node: true
