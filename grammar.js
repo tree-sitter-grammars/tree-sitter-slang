@@ -67,7 +67,7 @@ module.exports = grammar(HLSL, {
         type_hint: $ => seq(":", $._type_declarator),
 
         interface_specifier: $ => seq(
-            'interface',
+            choice('interface', 'dyn', 'some', seq('dyn', 'interface'), seq('some', 'interface')),
             $._class_declaration,
         ),
 

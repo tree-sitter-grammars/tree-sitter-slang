@@ -138,6 +138,114 @@ interface IFoo
               (identifier))))))))
 
 ================================================================================
+Interfaces (dyn/some)
+================================================================================
+
+dyn interface IFoo
+{
+    int myMethod(float arg);
+};
+
+dyn interface interface2
+{
+    associatedtype IBase1;
+};
+
+void renderScene()
+{
+	// Define variable that can participate in dynamic dispatch
+    dyn IRenderer renderer = getRenderer();
+
+    float4 color = renderer.render(position);
+}
+
+void localVariableExample()
+{
+    some ILight boundLight = PointLight();  // Bound immediately
+    some ILight unboundLight; // Unbound initially
+
+    unboundLight = DirectionalLight(); // OK - binding unbound variable
+    // unboundLight = PointLight(); // ERROR - cannot rebind
+
+    // boundLight = DirectionalLight(); // ERROR - cannot reassign bound type
+}
+
+
+--------------------------------------------------------------------------------
+
+(translation_unit
+  (interface_specifier
+    (type_identifier)
+    (field_declaration_list
+      (field_declaration
+        (primitive_type)
+        (function_declarator
+          (field_identifier)
+          (parameter_list
+            (parameter_declaration
+              (primitive_type)
+              (identifier)))))))
+  (interface_specifier
+    (type_identifier)
+    (field_declaration_list
+      (associatedtype_declaration
+        (type_identifier))))
+  (function_definition
+    (primitive_type)
+    (function_declarator
+      (identifier)
+      (parameter_list))
+    (compound_statement
+      (comment)
+      (declaration
+        (interface_specifier
+          (type_identifier))
+        (init_declarator
+          (identifier)
+          (call_expression
+            (identifier)
+            (argument_list))))
+      (declaration
+        (type_identifier)
+        (init_declarator
+          (identifier)
+          (call_expression
+            (field_expression
+              (identifier)
+              (field_identifier))
+            (argument_list
+              (identifier)))))))
+  (function_definition
+    (primitive_type)
+    (function_declarator
+      (identifier)
+      (parameter_list))
+    (compound_statement
+      (declaration
+        (interface_specifier
+          (type_identifier))
+        (init_declarator
+          (identifier)
+          (call_expression
+            (identifier)
+            (argument_list))))
+      (comment)
+      (declaration
+        (interface_specifier
+          (type_identifier))
+        (identifier))
+      (comment)
+      (expression_statement
+        (assignment_expression
+          (identifier)
+          (call_expression
+            (identifier)
+            (argument_list))))
+      (comment)
+      (comment)
+      (comment))))
+
+================================================================================
 Generics
 ================================================================================
 

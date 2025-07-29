@@ -8659,6 +8659,10 @@
     "named": false
   },
   {
+    "type": "dyn",
+    "named": false
+  },
+  {
     "type": "else",
     "named": false
   },
@@ -8956,6 +8960,10 @@
   },
   {
     "type": "snorm",
+    "named": false
+  },
+  {
+    "type": "some",
     "named": false
   },
   {
