@@ -18128,8 +18128,47 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "interface"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "interface"
+            },
+            {
+              "type": "STRING",
+              "value": "dyn"
+            },
+            {
+              "type": "STRING",
+              "value": "some"
+            },
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "dyn"
+                },
+                {
+                  "type": "STRING",
+                  "value": "interface"
+                }
+              ]
+            },
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "some"
+                },
+                {
+                  "type": "STRING",
+                  "value": "interface"
+                }
+              ]
+            }
+          ]
         },
         {
           "type": "SYMBOL",
