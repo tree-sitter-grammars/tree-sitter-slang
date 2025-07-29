@@ -22,7 +22,7 @@ readme = "README.md"
 Homepage = "https://github.com/tree-sitter-grammars/tree-sitter-slang"
 
 [project.optional-dependencies]
-core = ["tree-sitter@git+https://github.com/tree-sitter/py-tree-sitter#master"]
+core = ["tree-sitter>=0.25.0"]
 
 [tool.cibuildwheel]
 build = "cp310-*"
