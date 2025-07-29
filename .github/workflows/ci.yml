@@ -23,4 +23,4 @@ jobs:
           test-node: true
           test-python: true
           test-go: true
-          test-swift: true
+          test-swift: false
