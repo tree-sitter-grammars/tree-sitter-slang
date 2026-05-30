@@ -1,0 +1,225 @@
+// Slang grammar for tree-sitter (native DSL).
+// Extends tree-sitter-hlsl (which extends cpp which extends c).
+
+let hlsl = inherit("../tree-sitter-hlsl/grammar.tsg")
+
+// PREC mirrors C's plus IS/AS at RELATIONAL+1.
+let PREC = {
+    PAREN_DECLARATOR: -10, ASSIGNMENT: -2, CONDITIONAL: -1, DEFAULT: 0,
+    LOGICAL_OR: 1, LOGICAL_AND: 2, INCLUSIVE_OR: 3, EXCLUSIVE_OR: 4,
+    BITWISE_AND: 5, EQUAL: 6, RELATIONAL: 7, OFFSETOF: 8, SHIFT: 9,
+    ADD: 10, MULTIPLY: 11, CAST: 12, SIZEOF: 13, UNARY: 14,
+    CALL: 15, FIELD: 16, SUBSCRIPT: 17,
+    IS: 8, AS: 8,
+}
+
+macro comma_sep1(item: rule_t) rule_t {
+    seq(item, repeat(seq(",", item)))
+}
+macro comma_sep(item: rule_t) rule_t { optional(comma_sep1(item)) }
+macro dot_sep1(item: rule_t) rule_t {
+    seq(item, repeat(seq(".", item)))
+}
+macro and_sep1(item: rule_t) rule_t {
+    seq(item, repeat(seq("&", item)))
+}
+
+grammar {
+    language: "slang",
+    inherits: hlsl,
+
+    // HLSL's conflicts minus [parameter_list, argument_list], plus slang extras.
+    conflicts: [
+        // C
+        [type_specifier, _declarator],
+        [type_specifier, expression],
+        [sized_type_specifier],
+        [attributed_statement],
+        [_declaration_modifiers, attributed_statement],
+        [_declaration_modifiers, using_declaration],
+        [_declaration_modifiers, attributed_statement, using_declaration],
+        [_top_level_item, _top_level_statement],
+        [_block_item, statement],
+        [type_qualifier, extension_expression],
+        // C++
+        [template_function, template_type],
+        [template_function, template_type, expression],
+        [template_function, template_type, qualified_identifier],
+        [template_function, template_type, qualified_identifier, qualified_type_identifier],
+        [template_type, qualified_type_identifier],
+        [qualified_type_identifier, qualified_identifier],
+        [comma_expression, initializer_list],
+        [expression, _declarator],
+        [expression, structured_binding_declarator],
+        [expression, _declarator, type_specifier],
+        [expression, identifier_parameter_pack_expansion],
+        [expression, _lambda_capture_identifier],
+        [expression, _lambda_capture],
+        [expression, structured_binding_declarator, _lambda_capture_identifier],
+        [structured_binding_declarator, _lambda_capture_identifier],
+        [type_specifier, call_expression],
+        [_declaration_specifiers, _constructor_specifiers],
+        [_binary_fold_operator, _fold_operator],
+        [_function_declarator_seq],
+        [type_specifier, sized_type_specifier],
+        [initializer_pair, comma_expression],
+        [expression_statement, _for_statement_body],
+        [init_statement, _for_statement_body],
+        [field_expression, template_method, template_type],
+        [field_expression, template_method],
+        [qualified_field_identifier, template_method, template_type],
+        [type_specifier, template_type, template_function, expression],
+        [splice_type_specifier, splice_expression],
+        // HLSL
+        [function_declarator],
+        // Slang
+        [_top_level_statement, _empty_declaration],
+        [_declarator, type_hinted_declarator],
+        [type_specifier, compound_literal_expression],
+        [type_specifier, _class_name],
+        [_declaration_specifiers, declaration_list],
+        [_declaration_specifiers, _top_level_statement],
+        [declaration_list, _empty_declaration],
+    ],
+}
+
+override rule _top_level_statement {
+    choice(hlsl::_top_level_statement, import_statement, type_specifier)
+}
+
+override rule placeholder_type_specifier {
+    prec(1, seq(
+        field(constraint, optional(type_specifier)),
+        choice("var", "let", "This"),
+    ))
+}
+
+override rule init_declarator {
+    seq(
+        field(declarator, choice(_declarator, type_hinted_declarator)),
+        "=",
+        field(value, choice(initializer_list, expression)),
+    )
+}
+
+override rule declaration {
+    seq(
+        _declaration_specifiers,
+        comma_sep1(field(declarator, choice(
+            seq(choice(_declarator, type_hinted_declarator), optional(alias(seq(":", expression), semantics))),
+            init_declarator,
+        ))),
+        ";",
+    )
+}
+
+override rule declaration_list {
+    seq("{", repeat(choice(_block_item, type_specifier)), "}")
+}
+
+rule type_hinted_declarator { seq(identifier, type_hint) }
+rule type_hint { seq(":", _type_declarator) }
+
+rule interface_specifier {
+    seq(
+        choice("interface", "dyn", "some", seq("dyn", "interface"), seq("some", "interface")),
+        _class_declaration,
+    )
+}
+
+rule extension_specifier { seq("extension", _class_declaration) }
+
+override rule type_specifier {
+    choice(hlsl::type_specifier, interface_specifier, extension_specifier, associatedtype_specifier)
+}
+
+override rule template_argument_list {
+    seq(
+        "<",
+        comma_sep(choice(
+            prec_dynamic(4, seq("let", identifier, optional(interface_requirements), optional(seq("=", expression)))),
+            prec_dynamic(3, seq(type_descriptor, optional(interface_requirements), optional(seq("=", type_descriptor)))),
+            prec_dynamic(2, alias(type_parameter_pack_expansion, parameter_pack_expansion)),
+            prec_dynamic(1, expression),
+        )),
+        alias(token(prec(1, ">")), ">"),
+    )
+}
+
+rule interface_requirements {
+    prec_left(0, seq(":", and_sep1(identifier)))
+}
+
+override rule _function_declarator_seq {
+    seq(hlsl::_function_declarator_seq, optional(where_clause))
+}
+
+rule where_clause {
+    prec_right(0, seq(
+        "where",
+        comma_sep1(seq(type_descriptor, optional(interface_requirements), optional(seq("=", type_descriptor)))),
+    ))
+}
+
+override rule binary_expression {
+    choice(
+        hlsl::binary_expression,
+        prec_left(PREC.IS, seq(
+            field(left, expression),
+            field(operator, "is"),
+            field(right, expression),
+        )),
+        prec_left(PREC.AS, seq(
+            field(left, expression),
+            field(operator, "as"),
+            field(right, expression),
+        )),
+    )
+}
+
+rule import_statement {
+    prec(2, seq(optional("__exported"), "import", dot_sep1(identifier), ";"))
+}
+
+override rule _field_declaration_list_item {
+    choice(
+        hlsl::_field_declaration_list_item,
+        property_declaration, subscript_declaration,
+        init_declaration, associatedtype_declaration,
+    )
+}
+
+rule init_declaration {
+    seq("__init", parameter_list, compound_statement)
+}
+
+rule subscript_declaration {
+    seq(
+        "__subscript",
+        parameter_list,
+        optional(trailing_return_type),
+        alias(seq("{", repeat(choice(property_get, property_set)), "}"), compound_statement),
+    )
+}
+
+rule property_declaration {
+    seq(
+        "property",
+        choice(
+            seq(identifier, ":", type_descriptor),
+            seq(type_descriptor, identifier),
+        ),
+        alias(seq("{", repeat(choice(property_get, property_set)), "}"), compound_statement),
+    )
+}
+
+rule property_get { seq("get", choice(compound_statement, ";")) }
+rule property_set { seq("set", choice(compound_statement, ";")) }
+
+rule associatedtype_declaration {
+    seq("associatedtype", _type_identifier, optional(base_class_clause), ";")
+}
+
+rule associatedtype_specifier {
+    prec_right(0, seq(type_specifier, ".", type_specifier))
+}
